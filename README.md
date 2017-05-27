@@ -47,6 +47,10 @@ Twitter API client for Clojure, using [`aleph`](https://github.com/ztellman/alep
 (def first10 (doall (take 10 stream)))
 (-> stream meta :body (.close))
 (map :text first10)
+
+; track clojure and java tweets 
+(def stream (api/statuses-filter creds :params {:track "clojure,java"}))
+(mapv #(:text %) stream)
 ```
 
 
